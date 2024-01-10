@@ -11,12 +11,16 @@ import demoImage from "../images/demo.jpg";
 
 const { Text, Title } = Typography;
 
-const { Option } = Select;
+const { option } = Select;
 
 const News = ({ simplified }) => {
   const [newsCategory, setnewsCategory] = useState("Cryptocurrency");
 
-  const { data: cryptoNews, isError } = useGetCryptoNewsQuery({
+  const {
+    data: cryptoNews,
+    isError,
+    isFetching,
+  } = useGetCryptoNewsQuery({
     newsCategory,
     count: simplified ? 6 : 12,
   });
@@ -24,11 +28,12 @@ const News = ({ simplified }) => {
 
   //console.log(cryptoNews.data);
 
-  if (!cryptoNews?.data) return "Loading...";
+  if (isFetching) return "Loading...";
 
   if (isError) {
     return "Error fetching data. Please check console for details";
   }
+
   return (
     <>
       <Row gutter={[24, 24]}>
