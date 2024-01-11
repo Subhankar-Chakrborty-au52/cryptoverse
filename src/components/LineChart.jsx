@@ -67,7 +67,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
         chartType="ScatterChart"
         data={chartData}
         width="100%"
-        height="400px"
+        height="300px"
         legendToggle
       />
     </>
