@@ -21,6 +21,7 @@ import {
 } from "../services/cryptoApi";
 
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -35,7 +36,7 @@ const Cryptodetails = () => {
       timePeriod,
     });
 
-  if (isFetching || historyFetching) return "Loading...";
+  if (isFetching || historyFetching) return <Loader />;
 
   const cryptoDetails = data?.data?.coin;
 

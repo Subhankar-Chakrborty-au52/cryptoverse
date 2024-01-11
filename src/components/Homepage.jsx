@@ -2,6 +2,7 @@ import React from "react";
 import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 import News from "./News";
 
@@ -17,14 +18,14 @@ const Homepage = () => {
   //console.log(data);
   const globalStats = data?.data?.stats;
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader />;
 
   if (isError) {
     return "Error fetching data. Please check console for details";
   }
 
   return (
-    <div>
+    <>
       <Title level={2} className="heading">
         Global Crypto Stats
       </Title>
@@ -79,7 +80,7 @@ const Homepage = () => {
         </Title>
       </div>
       <News simplified />
-    </div>
+    </>
   );
 };
 

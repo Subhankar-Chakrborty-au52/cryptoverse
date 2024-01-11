@@ -34,6 +34,7 @@ const Navbar = () => {
       setActiveMenu(true);
     }
   }, [screenSize]);
+
   return (
     <div className="nav-conatiner">
       <div className="logo-container">
