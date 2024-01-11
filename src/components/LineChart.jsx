@@ -1,19 +1,22 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { Col, Row, Typography } from "antd";
+import { Chart } from "react-google-charts";
 
 const { Title } = Typography;
 
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   console.log("coinHistory", coinHistory);
-  const coinPrice = [];
-  const coinTimestamp = [];
+  const chartData = [["Price", "Timestamp"]];
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
-    coinPrice.push(coinHistory?.data?.history[i].price);
-    coinTimestamp.push(
-      new Date(coinHistory.data.history[i].timestamp).toLocaleDateString()
-    );
+    const date = new Date(
+      coinHistory.data.history[i].timestamp
+    ).toLocaleDateString();
+    chartData.push([
+      coinHistory?.data?.history[i].price,
+      coinHistory.data.history[i].timestamp,
+    ]);
   }
 
   //console.log({ coinTimestamp, coinPrice });
@@ -60,6 +63,13 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
         </Col>
       </Row>
       {/* <Line data={data} options={options} /> */}
+      <Chart
+        chartType="ScatterChart"
+        data={chartData}
+        width="100%"
+        height="400px"
+        legendToggle
+      />
     </>
   );
 };
